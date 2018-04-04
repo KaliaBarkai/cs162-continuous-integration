@@ -20,7 +20,7 @@ class TestComputationServer(unittest.TestCase):
 
         index = req.text
         index = index.split("<li>")
-        index = index[1].split("=")
+        index = index[0].split("=")
 
         self.assertEqual(value, int(index[0]))
 
@@ -60,17 +60,5 @@ class TestComputationServer(unittest.TestCase):
         self.assertEqual(1, rows)
 
 if __name__ == "__main__":
-
-    expression = "1 + 1"
-    value = 2
-
-    details = {"text":expression}
-
-    req = requests.post('http://localhost:5000/add', data = details )
-
-    index = req.text
-    index = index.split("<li>")
-    index = index[1].split("=")
-    self.assertEqual(value, int(index[0]))
-    #unittest.main()
+    unittest.main()
 
