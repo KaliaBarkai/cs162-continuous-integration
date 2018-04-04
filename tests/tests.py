@@ -2,7 +2,7 @@ import unittest
 import requests
 from requests import Session
 from flask_sqlalchemy import SQLAlchemy
-#from app import db
+from app import db
 
 class TestComputationServer(unittest.TestCase):
 
@@ -20,7 +20,7 @@ class TestComputationServer(unittest.TestCase):
 
         index = req.text
         index = index.split("<li>")
-        index = index[0].split("=")
+        index = index[1].split("=")
 
         self.assertEqual(value, int(index[0]))
 
@@ -48,7 +48,7 @@ class TestComputationServer(unittest.TestCase):
 
         req = requests.post('http://localhost:5000/add', data = details )
 
-        self.assertRaises(SomeException)
+        self.assertRaises(TypeError, "This is not a valid expression")
 
     def test_database_entry(self):
         '''
